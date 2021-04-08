@@ -5,6 +5,13 @@ export let svg = ''
 export let opacity = 1.0
 export let size = 100
 
+let svgElement
+
+export const getSVGElement = () => 
+{
+    return svgElement
+}
+
 const BASE = 100
 
 
@@ -16,7 +23,7 @@ const BASE = 100
 </style>
 
 <div style="opacity: {opacity}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {BASE} {BASE}" width="{size}" height="{size}" >
+    <svg bind:this={svgElement} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {BASE} {BASE}" width="{size}" height="{size}" >
         {@html svg}
     </svg>
 </div>

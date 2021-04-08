@@ -1,9 +1,13 @@
 <script>
+
+	import { onMount } from 'svelte'
 	import LevelProgressBar from "./LevelProgressBar/LevelProgressBar.svelte"
 	import SVGLayer from "./SVGLayer/SVGLayer.svelte"
 	import SVGGrid from "./SVGGrid/SVGGrid.svelte"
 	import CodeSection from "./CodeSection/CodeSection.svelte"
+	import { calculateSimilarityOfSVGs } from "./calculateSimilarityOfSVGs"
 	import LEVELS from "./LEVELS"
+	const { round } = Math
 
 	const SEMI_TRANSPARENT = 0.5
 	const SIZE = 400
@@ -11,37 +15,12 @@
 	let levelsPassed = 0
 	let userSVG = ""
 
-	$:
-	{
-		console.log(userSVG)
-	}
-	
-	/*
+	let solutionLayer 
+	let userLayer 
 
-	function base64SvgToBase64Png (originalBase64, width) {
-    	return new Promise(resolve => {
-    	    let img = document.createElement('img');
-    	    img.onload = function () {
-    	        document.body.appendChild(img);
-    	        let canvas = document.createElement("canvas");
-    	        let ratio = (img.clientWidth / img.clientHeight) || 1;
-    	        document.body.removeChild(img);
-    	        canvas.width = width;
-    	        canvas.height = width / ratio;
-    	        let ctx = canvas.getContext("2d");
-    	        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    	        try {
-    	            let data = canvas.toDataURL('image/png');
-    	            resolve(data);
-    	        } catch (e) {
-    	            resolve(null);
-    	        }
-    	    };
-    	    img.src = originalBase64;
-    	});
-	}
+	let similarityPromise = new Promise((resolve) => resolve(0))
 
-	
+	/*	
 	function save (svg, name = 'download.svg') {
 		svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 		var svgData = svg.outerHTML;
@@ -120,25 +99,21 @@
 			
 				<div class="layer">
 					<!-- Layer which shows how the svg should look like -->
-					<SVGLayer svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
+					<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
 				</div>
 			
 				<div class="layer">
 					<!-- Layer which shows how the svg of the user looks like -->
-					<SVGLayer svg={userSVG} size={SIZE} />
+					<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
 				</div>
 			</div>
 		</div>
 
 		<div class="section">
-			<!-- Code Mirror Stuff -->
-		
 			<CodeSection on:change={(e) => { userSVG = e.detail.value }}></CodeSection>
 		</div>		
 	</content>
 	<nav>
-		<!-- Shows Tutorial Text -->
-
 		<div class="section">
 			<h2>{LEVELS[levelsPassed].heading}</h2>
 			{@html LEVELS[levelsPassed].tutorialText}
@@ -149,9 +124,24 @@
 		</div>
 
 		<div class="section">
+			{#await similarityPromise}
+				<p>...waiting</p>
+			{:then similarity}
+				<p>The Similarity is {round(similarity * 100)}%</p>
+			{:catch error}
+				<p style="color: red">{error.message}</p>
+			{/await}
+		</div>
+
+		<div class="section">
 			<button on:click={() => {
 				// const solution = base64SvgToBase64Png(LEVELS[levelsPassed].solutionSVG);
 				// const attempt = base64SvgToBase64Png(userSVG.svg);
+
+				const solutionSVGElement = solutionLayer.getSVGElement()
+				const userSVGElement = userLayer.getSVGElement()
+
+				similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
 			}}>Check</button>
 		</div>
 	</nav>
