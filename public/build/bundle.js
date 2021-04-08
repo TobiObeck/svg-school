@@ -15065,14 +15065,17 @@ var app = (function () {
 
         // level 2
         /*
-        <circle cx="10" cy="10" r="10" stroke="black" />
-        <circle cx="30" cy="10" r="10" stroke="black" />
-        <circle cx="50" cy="10" r="10" stroke="black" />
-        <circle cx="70" cy="10" r="10" stroke="black" />
-        <circle cx="90" cy="10" r="10" stroke="black" />
-        <circle cx="110" cy="10" r="10" stroke="black" />
-        <circle cx="130" cy="10" r="10" stroke="black" />
-        <circle cx="150" cy="10" r="10" stroke="black" />
+    <circle cx="30" cy="30" r="10" />
+    <circle cx="50" cy="50" r="10" />
+    <circle cx="70" cy="70" r="10" />
+
+    <circle cx="30" cy="30" r="10" />
+    <circle cx="50" cy="50" r="10" />
+    <circle cx="70" cy="70" r="10" />
+
+    <circle cx="30" cy="30" r="10" />
+    <circle cx="50" cy="50" r="10" />
+    <circle cx="70" cy="70" r="10" />
         */
         // ...
     ];
