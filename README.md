@@ -1,7 +1,9 @@
 # svg-school
+
 a little website that teaches you how to use SVG
 
 ## 👥 Contributors
+
 <table>
     <tr>
         <td>
@@ -21,3 +23,11 @@ a little website that teaches you how to use SVG
         </td>
     </tr>
 </table>
+
+## 🗒 Roadmap / TODO
+
+- color to grayscale / evaluate color space
+- lodash debounce check
+- more levels
+- info texts
+- other views / split view (left user svg, right target svg)
