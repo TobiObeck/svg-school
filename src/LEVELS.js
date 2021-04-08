@@ -10,15 +10,15 @@ export default [
     // level 2
     /*
 <circle cx="30" cy="30" r="10" />
-<circle cx="50" cy="50" r="10" />
-<circle cx="70" cy="70" r="10" />
+<circle cx="50" cy="30" r="10" />
+<circle cx="70" cy="30" r="10" />
 
-<circle cx="30" cy="30" r="10" />
+<circle cx="30" cy="50" r="10" />
 <circle cx="50" cy="50" r="10" />
-<circle cx="70" cy="70" r="10" />
+<circle cx="70" cy="50" r="10" />
 
-<circle cx="30" cy="30" r="10" />
-<circle cx="50" cy="50" r="10" />
+<circle cx="30" cy="70" r="10" />
+<circle cx="50" cy="70" r="10" />
 <circle cx="70" cy="70" r="10" />
     */
     // ...
