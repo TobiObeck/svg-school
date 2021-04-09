@@ -8,6 +8,8 @@ const { sqrt, pow } = Math
 
 export async function calculateSimilarityOfSVGs(svgElement1, svgElement2) 
 {
+    const NUMBER_OF_CHANNELS = 3
+
     const svgString1 = new XMLSerializer().serializeToString(svgElement1)
     const svgString2 = new XMLSerializer().serializeToString(svgElement2)
 
@@ -19,7 +21,7 @@ export async function calculateSimilarityOfSVGs(svgElement1, svgElement2)
     const image2ByteChunks = await toImage(encodedSVGString2)
 
     const sumOfDists = imageDist(image1ByteChunks, image2ByteChunks)
-    const maxDistance = (image1ByteChunks.length) * sqrt(3)
+    const maxDistance = (image1ByteChunks.length) * sqrt(NUMBER_OF_CHANNELS)
 
     return (1.0 - (sumOfDists / maxDistance))
 }
@@ -33,10 +35,11 @@ function imageDist(image1, image2) {
 }
 
 function pixelDist(pixel1, pixel2) {
+    const CHANNEL_MAX_VALUE = 255
     const channelPairs = zip(pixel1, pixel2)
     const channelDists = map(
         channelPairs, (colorChannelPair) => {
-            return pow((colorChannelPair[0] - colorChannelPair[1])/255.0, 2)
+            return pow((colorChannelPair[0] - colorChannelPair[1]) / CHANNEL_MAX_VALUE, 2)
         }
     )
     return sqrt(sum(channelDists))
@@ -45,7 +48,7 @@ function pixelDist(pixel1, pixel2) {
 async function toImage(svg) {
     return new Promise((resolve) => 
     {
-        const WIDTH = 100
+        const RESOLUTION_WIDTH = 100
         const ALPHA_CHANNEL_INDEX = 3
         const PIXEL_BYTE_LENGTH = 4 // bytes per pixel
         
@@ -57,8 +60,8 @@ async function toImage(svg) {
             let canvas = document.createElement("canvas");
             let ratio = (img.clientWidth / img.clientHeight) || 1;
             document.body.removeChild(img);
-            canvas.width = WIDTH;
-            canvas.height = WIDTH / ratio;
+            canvas.width = RESOLUTION_WIDTH;
+            canvas.height = RESOLUTION_WIDTH / ratio;
             let ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         
@@ -72,7 +75,7 @@ async function toImage(svg) {
                 }
                 else
                 {
-                    return [ chunk[0], chunk[1], chunk[2] ]
+                    return [ ...chunk.slice(0, ALPHA_CHANNEL_INDEX) ]
                 }
             })
         

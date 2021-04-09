@@ -1,10 +1,10 @@
 <script>
 
-	import { onMount } from 'svelte'
 	import LevelProgressBar from "./LevelProgressBar/LevelProgressBar.svelte"
 	import SVGLayer from "./SVGLayer/SVGLayer.svelte"
 	import SVGGrid from "./SVGGrid/SVGGrid.svelte"
 	import CodeSection from "./CodeSection/CodeSection.svelte"
+	import MaximumSizeSquare from './MaximumSizeSquare/MaximumSizeSquare.svelte'
 	import { calculateSimilarityOfSVGs } from "./calculateSimilarityOfSVGs"
 	import LEVELS from "./LEVELS"
 	const { round } = Math
@@ -20,23 +20,6 @@
 
 	let similarityPromise = new Promise((resolve) => resolve(0))
 
-	/*	
-	function save (svg, name = 'download.svg') {
-		svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-		var svgData = svg.outerHTML;
-		var preface = '<?xml version="1.0" standalone="no"?>\r\n';
-		var svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
-		var svgUrl = URL.createObjectURL(svgBlob);
-
-		var downloadLink = document.createElement("a");
-		downloadLink.href = svgUrl;
-		downloadLink.download = name;
-		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		document.body.removeChild(downloadLink);
-	}
-	*/
-
 </script>
 
 <style>
@@ -51,6 +34,7 @@
 	content
 	{
 		flex: 2;
+		height: 100%;
 	}
 
 	nav
@@ -61,6 +45,7 @@
 
 	content > .section
 	{
+		width: calc(100% - 30px);
 		padding: 15px;
 	}
 
@@ -71,13 +56,16 @@
 
 	.stacking
 	{
-		width: 400px;
-		height: 400px;
+		position:relative;
+		width: 100%;
+		height: 100%;
 	}
 
 	.layer
 	{
 		position: absolute;
+		width: 100%;
+		height: 100%;
 	}
 
 	.centering
@@ -86,30 +74,42 @@
 		justify-content: center;
 	}
 
+	#display-section
+	{
+		height: calc(50% - 30px);
+	}
+
+	#code-section
+	{
+		height: calc(50% - 30px);
+	}
+
 </style>
 
 <main>
 	<content>
-		<div class="section centering">
-			<div class="stacking">
-				<!-- Layer which shows a grid -->
-				<div class="layer">
-					<SVGGrid size={SIZE} />
+		<div id="display-section" class="section centering">
+			<MaximumSizeSquare>
+				<div class="stacking">
+					<!-- Layer which shows a grid -->
+					<div class="layer">
+						<SVGGrid size={SIZE} />
+					</div>
+				
+					<div class="layer">
+						<!-- Layer which shows how the svg should look like -->
+						<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
+					</div>
+				
+					<div class="layer">
+						<!-- Layer which shows how the svg of the user looks like -->
+						<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
+					</div>
 				</div>
-			
-				<div class="layer">
-					<!-- Layer which shows how the svg should look like -->
-					<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
-				</div>
-			
-				<div class="layer">
-					<!-- Layer which shows how the svg of the user looks like -->
-					<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
-				</div>
-			</div>
+			</MaximumSizeSquare>
 		</div>
 
-		<div class="section">
+		<div id="code-section" class="section">
 			<CodeSection on:change={(e) => { userSVG = e.detail.value }}></CodeSection>
 		</div>		
 	</content>
@@ -135,9 +135,6 @@
 
 		<div class="section">
 			<button on:click={() => {
-				// const solution = base64SvgToBase64Png(LEVELS[levelsPassed].solutionSVG);
-				// const attempt = base64SvgToBase64Png(userSVG.svg);
-
 				const solutionSVGElement = solutionLayer.getSVGElement()
 				const userSVGElement = userLayer.getSVGElement()
 
