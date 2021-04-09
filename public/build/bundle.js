@@ -15137,6 +15137,7 @@ var app = (function () {
         return new Promise((resolve) => 
         {
             const RESOLUTION_WIDTH = 100;
+            const RGB_WHITE = [ 255, 255, 255 ];
             const ALPHA_CHANNEL_INDEX = 3;
             const PIXEL_BYTE_LENGTH = 4; // bytes per pixel
             
@@ -15159,7 +15160,7 @@ var app = (function () {
                 {
                     if(chunk[ALPHA_CHANNEL_INDEX] === 0)
                     {
-                        return [ 255, 255, 255 ]
+                        return RGB_WHITE
                     }
                     else
                     {
