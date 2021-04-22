@@ -30,4 +30,6 @@ a little website that teaches you how to use SVG
 - lodash debounce check
 - more levels
 - info texts
-- other views / split view (left user svg, right target svg)
+- coordinate system numbers
+- bonus points for minimal code size
+- accuracy bug (always 100% accuracy)?
