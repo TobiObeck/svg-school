@@ -133,7 +133,7 @@
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg should look like -->
-							<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} opacity={SEMI_TRANSPARENT}/>
+							<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG}/>
 						</div>
 					
 						<div class="layer">
