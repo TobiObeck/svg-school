@@ -150,7 +150,7 @@
 						<div class="stacking">
 							<!-- Layer which shows a grid -->
 							<div class="layer">
-								<SVGGrid />
+								<SVGGrid/>
 							</div>
 
 							<div class="layer">
@@ -171,7 +171,7 @@
 
 							<div class="layer">
 								<!-- Layer which shows how the svg should look like -->
-								<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} opacity={SEMI_TRANSPARENT}/>
+								<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG}/>
 							</div>
 						</div>
 					</MaximumSizeSquare>
