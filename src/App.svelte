@@ -20,7 +20,6 @@
 	}
 
 	const SEMI_TRANSPARENT = 0.5
-	const SIZE = 400
 
 	let levelsPassed = 0
 	let userSVG = ""
@@ -129,17 +128,17 @@
 					<div class="stacking">
 						<!-- Layer which shows a grid -->
 						<div class="layer">
-							<SVGGrid size={SIZE} />
+							<SVGGrid />
 						</div>
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg should look like -->
-							<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
+							<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} opacity={SEMI_TRANSPARENT}/>
 						</div>
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg of the user looks like -->
-							<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
+							<SVGLayer bind:this={userLayer} svg={userSVG} />
 						</div>
 					</div>
 				</MaximumSizeSquare>
@@ -156,7 +155,7 @@
 
 							<div class="layer">
 								<!-- Layer which shows how the svg of the user looks like -->
-								<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
+								<SVGLayer bind:this={userLayer} svg={userSVG} />
 							</div>
 						</div>
 					</MaximumSizeSquare>
@@ -172,7 +171,7 @@
 
 							<div class="layer">
 								<!-- Layer which shows how the svg should look like -->
-								<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
+								<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} opacity={SEMI_TRANSPARENT}/>
 							</div>
 						</div>
 					</MaximumSizeSquare>
