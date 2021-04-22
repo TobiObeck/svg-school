@@ -11,6 +11,8 @@ const level2 = `<circle cx="30" cy="30" r="10" />
 <circle cx="50" cy="70" r="10" />
 <circle cx="70" cy="70" r="10" />`;
 
+const triangle = `<path d="M71 47L92 79L51 79L11 79L31 47L51 16L71 47Z" fill="#b61656" />`;
+
 export default [
   {
     heading: "Introduction",
