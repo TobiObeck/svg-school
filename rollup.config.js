@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import {sass} from 'svelte-preprocess-sass'
 import postcss from "rollup-plugin-postcss"
-import json from 'rollup-plugin-json';
+import json from 'rollup-plugin-json'
 
 const production = !process.env.ROLLUP_WATCH;
 
