@@ -15362,12 +15362,12 @@ var app = (function () {
 
     function add_css() {
     	var style = element("style");
-    	style.id = "svelte-1cgkvhc-style";
-    	style.textContent = "main.svelte-1cgkvhc.svelte-1cgkvhc{display:flex;width:100%;height:100vh}content.svelte-1cgkvhc.svelte-1cgkvhc{flex:2;height:100%}nav.svelte-1cgkvhc.svelte-1cgkvhc{flex:1;box-shadow:0px 0px 5px 0px rgba(0,0,0,0.5)}content.svelte-1cgkvhc>.section.svelte-1cgkvhc{width:calc(100% - 30px);padding:15px}nav.svelte-1cgkvhc>.section.svelte-1cgkvhc{padding:15px}.stacking.svelte-1cgkvhc.svelte-1cgkvhc{position:relative;width:100%;height:100%}.layer.svelte-1cgkvhc.svelte-1cgkvhc{position:absolute;width:100%;height:100%}.centering.svelte-1cgkvhc.svelte-1cgkvhc{display:flex;justify-content:center}.fullsize.svelte-1cgkvhc.svelte-1cgkvhc{width:100%;height:100%\n\t}.float-right.svelte-1cgkvhc.svelte-1cgkvhc{float:right;margin:10px}#display-section.svelte-1cgkvhc.svelte-1cgkvhc{height:calc(50% - 30px)}#code-section.svelte-1cgkvhc.svelte-1cgkvhc{height:calc(50% - 30px)}";
+    	style.id = "svelte-cdnljr-style";
+    	style.textContent = "main.svelte-cdnljr.svelte-cdnljr{display:flex;width:100%;height:100vh}content.svelte-cdnljr.svelte-cdnljr{flex:2;height:100%}nav.svelte-cdnljr.svelte-cdnljr{flex:1;box-shadow:0px 0px 5px 0px rgba(0,0,0,0.5)}content.svelte-cdnljr>.section.svelte-cdnljr{width:calc(100% - 30px);padding:15px}nav.svelte-cdnljr>.section.svelte-cdnljr{padding:15px}.stacking.svelte-cdnljr.svelte-cdnljr{position:relative;width:100%;height:100%}.layer.svelte-cdnljr.svelte-cdnljr{position:absolute;width:100%;height:100%}.centering.svelte-cdnljr.svelte-cdnljr{display:flex;justify-content:center}.fullsize.svelte-cdnljr.svelte-cdnljr{width:100%;height:100%\n\t}.justify-right.svelte-cdnljr.svelte-cdnljr{display:flex;justify-content:flex-end;margin:0 10px}#display-section.svelte-cdnljr.svelte-cdnljr{height:calc(50% - 30px)}#code-section.svelte-cdnljr.svelte-cdnljr{height:calc(50% - 30px)}";
     	append(document.head, style);
     }
 
-    // (126:3) {#if displayMode === DISPLAY.STACKED}
+    // (127:3) {#if displayMode === DISPLAY.STACKED}
     function create_if_block_1(ctx) {
     	let maximumsizesquare;
     	let current;
@@ -15411,7 +15411,7 @@ var app = (function () {
     	};
     }
 
-    // (127:4) <MaximumSizeSquare>
+    // (128:4) <MaximumSizeSquare>
     function create_default_slot_2(ctx) {
     	let div3;
     	let div0;
@@ -15448,10 +15448,10 @@ var app = (function () {
     			t1 = space();
     			div2 = element("div");
     			create_component(svglayer1.$$.fragment);
-    			attr(div0, "class", "layer svelte-1cgkvhc");
-    			attr(div1, "class", "layer svelte-1cgkvhc");
-    			attr(div2, "class", "layer svelte-1cgkvhc");
-    			attr(div3, "class", "stacking svelte-1cgkvhc");
+    			attr(div0, "class", "layer svelte-cdnljr");
+    			attr(div1, "class", "layer svelte-cdnljr");
+    			attr(div2, "class", "layer svelte-cdnljr");
+    			attr(div3, "class", "stacking svelte-cdnljr");
     		},
     		m(target, anchor) {
     			insert(target, div3, anchor);
@@ -15496,7 +15496,7 @@ var app = (function () {
     	};
     }
 
-    // (147:3) {#if displayMode === DISPLAY.PARALLEL}
+    // (148:3) {#if displayMode === DISPLAY.PARALLEL}
     function create_if_block(ctx) {
     	let div0;
     	let maximumsizesquare0;
@@ -15526,8 +15526,8 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			create_component(maximumsizesquare1.$$.fragment);
-    			attr(div0, "class", "fullsize svelte-1cgkvhc");
-    			attr(div1, "class", "fullsize svelte-1cgkvhc");
+    			attr(div0, "class", "fullsize svelte-cdnljr");
+    			attr(div1, "class", "fullsize svelte-cdnljr");
     		},
     		m(target, anchor) {
     			insert(target, div0, anchor);
@@ -15574,7 +15574,7 @@ var app = (function () {
     	};
     }
 
-    // (149:5) <MaximumSizeSquare>
+    // (150:5) <MaximumSizeSquare>
     function create_default_slot_1(ctx) {
     	let div2;
     	let div0;
@@ -15596,9 +15596,9 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			create_component(svglayer.$$.fragment);
-    			attr(div0, "class", "layer svelte-1cgkvhc");
-    			attr(div1, "class", "layer svelte-1cgkvhc");
-    			attr(div2, "class", "stacking svelte-1cgkvhc");
+    			attr(div0, "class", "layer svelte-cdnljr");
+    			attr(div1, "class", "layer svelte-cdnljr");
+    			attr(div2, "class", "stacking svelte-cdnljr");
     		},
     		m(target, anchor) {
     			insert(target, div2, anchor);
@@ -15634,7 +15634,7 @@ var app = (function () {
     	};
     }
 
-    // (165:5) <MaximumSizeSquare>
+    // (166:5) <MaximumSizeSquare>
     function create_default_slot(ctx) {
     	let div2;
     	let div0;
@@ -15662,9 +15662,9 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			create_component(svglayer.$$.fragment);
-    			attr(div0, "class", "layer svelte-1cgkvhc");
-    			attr(div1, "class", "layer svelte-1cgkvhc");
-    			attr(div2, "class", "stacking svelte-1cgkvhc");
+    			attr(div0, "class", "layer svelte-cdnljr");
+    			attr(div1, "class", "layer svelte-cdnljr");
+    			attr(div2, "class", "stacking svelte-cdnljr");
     		},
     		m(target, anchor) {
     			insert(target, div2, anchor);
@@ -15699,7 +15699,7 @@ var app = (function () {
     	};
     }
 
-    // (202:3) {:catch error}
+    // (203:3) {:catch error}
     function create_catch_block(ctx) {
     	let p;
     	let t_value = /*error*/ ctx[16].message + "";
@@ -15724,7 +15724,7 @@ var app = (function () {
     	};
     }
 
-    // (200:3) {:then similarity}
+    // (201:3) {:then similarity}
     function create_then_block(ctx) {
     	let p;
     	let t0;
@@ -15754,7 +15754,7 @@ var app = (function () {
     	};
     }
 
-    // (198:29)      <p>...waiting</p>    {:then similarity}
+    // (199:29)      <p>...waiting</p>    {:then similarity}
     function create_pending_block(ctx) {
     	let p;
 
@@ -15869,19 +15869,19 @@ var app = (function () {
     			div6 = element("div");
     			button2 = element("button");
     			button2.textContent = "Check";
-    			attr(div0, "class", "float-right svelte-1cgkvhc");
+    			attr(div0, "class", "justify-right svelte-cdnljr");
     			attr(div1, "id", "display-section");
-    			attr(div1, "class", "section centering svelte-1cgkvhc");
+    			attr(div1, "class", "section centering svelte-cdnljr");
     			attr(div2, "id", "code-section");
-    			attr(div2, "class", "section svelte-1cgkvhc");
-    			attr(content, "class", "svelte-1cgkvhc");
+    			attr(div2, "class", "section svelte-cdnljr");
+    			attr(content, "class", "svelte-cdnljr");
     			html_tag = new HtmlTag(null);
-    			attr(div3, "class", "section svelte-1cgkvhc");
-    			attr(div4, "class", "section svelte-1cgkvhc");
-    			attr(div5, "class", "section svelte-1cgkvhc");
-    			attr(div6, "class", "section svelte-1cgkvhc");
-    			attr(nav, "class", "svelte-1cgkvhc");
-    			attr(main, "class", "svelte-1cgkvhc");
+    			attr(div3, "class", "section svelte-cdnljr");
+    			attr(div4, "class", "section svelte-cdnljr");
+    			attr(div5, "class", "section svelte-cdnljr");
+    			attr(div6, "class", "section svelte-cdnljr");
+    			attr(nav, "class", "svelte-cdnljr");
+    			attr(main, "class", "svelte-cdnljr");
     		},
     		m(target, anchor) {
     			insert(target, main, anchor);
@@ -16103,7 +16103,7 @@ var app = (function () {
     class App extends SvelteComponent {
     	constructor(options) {
     		super();
-    		if (!document.getElementById("svelte-1cgkvhc-style")) add_css();
+    		if (!document.getElementById("svelte-cdnljr-style")) add_css();
     		init(this, options, instance, create_fragment, safe_not_equal, {});
     	}
     }

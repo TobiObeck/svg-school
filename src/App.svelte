@@ -91,10 +91,11 @@
 		height: 100%
 	}
 
-	.float-right
+	.justify-right
 	{
-		float: right;
-		margin: 10px;
+		display: flex;
+		justify-content: flex-end;
+		margin: 0 10px;
 	}
 
 	#display-section
@@ -112,7 +113,7 @@
 
 <main>
 	<content>
-		<div class="float-right">
+		<div class="justify-right">
 
 			<button on:click={() => { displayMode = DISPLAY.STACKED}}>
 				<Icon icon={faLayerGroup}></Icon>
