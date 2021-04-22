@@ -150,7 +150,7 @@
 						<div class="stacking">
 							<!-- Layer which shows a grid -->
 							<div class="layer">
-								<SVGGrid size={SIZE} />
+								<SVGGrid />
 							</div>
 
 							<div class="layer">
@@ -166,7 +166,7 @@
 						<div class="stacking">
 							<!-- Layer which shows a grid -->
 							<div class="layer">
-								<SVGGrid size={SIZE} />
+								<SVGGrid />
 							</div>
 
 							<div class="layer">
