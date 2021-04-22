@@ -7,13 +7,24 @@
 	import MaximumSizeSquare from './MaximumSizeSquare/MaximumSizeSquare.svelte'
 	import { calculateSimilarityOfSVGs } from "./calculateSimilarityOfSVGs"
 	import LEVELS from "./LEVELS"
+
+	import Icon from 'fa-svelte'
+	import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup'
+	import { faClone } from '@fortawesome/free-solid-svg-icons/faClone'
 	const { round } = Math
+	
+
+	const DISPLAY = {
+		STACKED: 1,
+		PARALLEL: 0
+	}
 
 	const SEMI_TRANSPARENT = 0.5
 	const SIZE = 400
 
 	let levelsPassed = 0
 	let userSVG = ""
+	let displayMode = DISPLAY.STACKED
 
 	let solutionLayer 
 	let userLayer 
@@ -74,6 +85,18 @@
 		justify-content: center;
 	}
 
+	.fullsize
+	{
+		width:100%; 
+		height: 100%
+	}
+
+	.float-right
+	{
+		float: right;
+		margin: 10px;
+	}
+
 	#display-section
 	{
 		height: calc(50% - 30px);
@@ -86,27 +109,75 @@
 
 </style>
 
+
 <main>
 	<content>
+		<div class="float-right">
+
+			<button on:click={() => { displayMode = DISPLAY.STACKED}}>
+				<Icon icon={faLayerGroup}></Icon>
+			</button>
+			<button on:click={() => { displayMode = DISPLAY.PARALLEL}}>
+				<Icon icon={faClone}></Icon>
+			</button>
+		</div>
+
 		<div id="display-section" class="section centering">
-			<MaximumSizeSquare>
-				<div class="stacking">
-					<!-- Layer which shows a grid -->
-					<div class="layer">
-						<SVGGrid size={SIZE} />
+			{#if displayMode === DISPLAY.STACKED}
+				<MaximumSizeSquare>
+					<div class="stacking">
+						<!-- Layer which shows a grid -->
+						<div class="layer">
+							<SVGGrid size={SIZE} />
+						</div>
+					
+						<div class="layer">
+							<!-- Layer which shows how the svg should look like -->
+							<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
+						</div>
+					
+						<div class="layer">
+							<!-- Layer which shows how the svg of the user looks like -->
+							<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
+						</div>
 					</div>
-				
-					<div class="layer">
-						<!-- Layer which shows how the svg should look like -->
-						<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
-					</div>
-				
-					<div class="layer">
-						<!-- Layer which shows how the svg of the user looks like -->
-						<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
-					</div>
+				</MaximumSizeSquare>
+			{/if}
+
+			{#if displayMode === DISPLAY.PARALLEL}
+				<div class="fullsize">
+					<MaximumSizeSquare>
+						<div class="stacking">
+							<!-- Layer which shows a grid -->
+							<div class="layer">
+								<SVGGrid size={SIZE} />
+							</div>
+
+							<div class="layer">
+								<!-- Layer which shows how the svg of the user looks like -->
+								<SVGLayer bind:this={userLayer} svg={userSVG} size={SIZE} />
+							</div>
+						</div>
+					</MaximumSizeSquare>
 				</div>
-			</MaximumSizeSquare>
+
+				<div class="fullsize">
+					<MaximumSizeSquare>
+						<div class="stacking">
+							<!-- Layer which shows a grid -->
+							<div class="layer">
+								<SVGGrid size={SIZE} />
+							</div>
+
+							<div class="layer">
+								<!-- Layer which shows how the svg should look like -->
+								<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} size={SIZE} opacity={SEMI_TRANSPARENT}/>
+							</div>
+						</div>
+					</MaximumSizeSquare>
+				</div>
+			{/if}
+
 		</div>
 
 		<div id="code-section" class="section">

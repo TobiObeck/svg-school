@@ -13,6 +13,7 @@
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@tsconfig/svelte": "^1.0.10",
     "agentkeepalive": "^4.1.4",
+    "fa-svelte": "^3.1.0",
     "rollup": "^2.44.0",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-import-css": "^2.0.1",
@@ -31,6 +32,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@joshnuss/svelte-codemirror": "^0.2.0",
     "codemirror": "^5.60.0",
     "lodash": "^4.17.21",
