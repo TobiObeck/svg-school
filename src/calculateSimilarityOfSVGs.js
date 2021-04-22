@@ -9,11 +9,11 @@ const { sqrt, pow } = Math
 export async function calculateSimilarityOfSVGs(svgElement1, svgElement2) 
 {
     const NUMBER_OF_CHANNELS = 3
+    const BASE64_PREFIX = "data:image/svg+xml;base64,"
 
     const svgString1 = new XMLSerializer().serializeToString(svgElement1)
     const svgString2 = new XMLSerializer().serializeToString(svgElement2)
 
-    const BASE64_PREFIX = "data:image/svg+xml;base64,"
     const encodedSVGString1 = BASE64_PREFIX + window.btoa(svgString1);
     const encodedSVGString2 = BASE64_PREFIX + window.btoa(svgString2);
     
