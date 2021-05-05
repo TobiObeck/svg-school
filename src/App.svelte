@@ -34,12 +34,13 @@
 	
 	const onCodeSectionChangeDebounce = debounce((event) => 
 	{
-		console.log("debounce")
 		const solutionSVGElement = solutionLayer.getSVGElement()
 		const userSVGElement = userLayer.getSVGElement()
 
 		userSVG = event.detail.value
-		await similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+		//similarityPromise = new Promise((resolve) => setTimeout(()=>{ resolve(0.777) }, 3000))
+		console.log('this is promise', similarityPromise)
 	}, DEBOUNCE_TIME)
 
 </script>
@@ -198,7 +199,7 @@
 		</div>
 
 		<div id="code-section" class="section">
-			<CodeSection on:change={(e) => { onCodeSectionChangeDebounce(e) }}></CodeSection>
+			<CodeSection on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
 		</div>		
 	</content>
 	<nav>
@@ -211,21 +212,14 @@
 			<LevelProgressBar levelsPassed={levelsPassed} currentLevel={currentLevel} amountOfLevels={LEVELS.length} />
 		</div>
 
-		<div class="section">
-			{#await similarityPromise}
-				<p>...waiting</p>
-			{:then similarity}
+		{#await similarityPromise}
+			<p>...waiting</p>
+		{:then similarity}
+			<div class="section">
 				<p>The Similarity is {round(similarity * 100)}%</p>
-			{:catch error}
-				<p class="error">{error.message}</p>
-			{/await}
-		</div>
-
-		<div class="section">
-			{#await similarityPromise}
-				<span></span>
-			{:then similarity}
-				{#if similarity > 90 }
+			</div>
+			<div class="section">
+				{#if similarity > 0.9 }
 					<p>Level complete!</p>
 					{#if currentLevel == levelsPassed }
 						<button on:click={() => {
@@ -234,10 +228,10 @@
 						}}>Next Level</button>
 					{/if}
 				{/if}
-			{:catch error}
-				<p class="error">{error.message}</p>
-			{/await}
+			</div>
+		{:catch error}
+			<p class="error">{error.message}</p>
+		{/await}
 
-		</div>
 	</nav>
 </main>
