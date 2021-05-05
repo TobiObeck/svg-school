@@ -13,7 +13,8 @@ const level2 = `<circle cx="30" cy="30" r="10" />
 
 const triangle = `<path d="M71 47L92 79L51 79L11 79L31 47L51 16L71 47Z" fill="#b61656" />`;
 
-// style="fill:rgb(0,0,255);stroke-width:2;stroke:rgb(0,0,0)"
+// teaches that the order of overlapping objects is important
+// and alternative of building it with a thik stroke
 const level3 = `
 <rect x="5" y="10" width="10" height="80" />
 <rect x="30" y="30" width="40" height="40" stroke-width="20" stroke="black" fill="white" />
