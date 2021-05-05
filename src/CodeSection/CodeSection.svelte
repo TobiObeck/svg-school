@@ -12,6 +12,7 @@
 		mode: "xml",
     htmlMode: true,
 		lineNumbers: true,
+    theme: 'default',
     value: value
 	}
 

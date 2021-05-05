@@ -11,15 +11,16 @@
 	import Icon from 'fa-svelte'
 	import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup'
 	import { faClone } from '@fortawesome/free-solid-svg-icons/faClone'
+	import debounce from 'lodash/debounce'
 	const { round } = Math
-	
 
 	const DISPLAY = {
-		STACKED: 1,
-		PARALLEL: 0
+		PARALLEL: 0,
+		STACKED: 1
 	}
 
 	const SEMI_TRANSPARENT = 0.5
+	const DEBOUNCE_TIME = 750
 
 	let levelsPassed = 0
 	let userSVG = ""
@@ -29,6 +30,15 @@
 	let userLayer 
 
 	let similarityPromise = new Promise((resolve) => resolve(0))
+	
+	const onCodeSectionChangeDebounce = debounce((event) => 
+	{
+		const solutionSVGElement = solutionLayer.getSVGElement()
+		const userSVGElement = userLayer.getSVGElement()
+
+		userSVG = event.detail.value
+		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+	}, DEBOUNCE_TIME)
 
 </script>
 
@@ -95,6 +105,11 @@
 		display: flex;
 		justify-content: flex-end;
 		margin: 0 10px;
+	}
+
+	.error
+	{
+		color: red;
 	}
 
 	#display-section
@@ -181,7 +196,7 @@
 		</div>
 
 		<div id="code-section" class="section">
-			<CodeSection on:change={(e) => { userSVG = e.detail.value }}></CodeSection>
+			<CodeSection on:change={(e) => { onCodeSectionChangeDebounce(e) }}></CodeSection>
 		</div>		
 	</content>
 	<nav>
@@ -200,18 +215,23 @@
 			{:then similarity}
 				<p>The Similarity is {round(similarity * 100)}%</p>
 			{:catch error}
-				<p style="color: red">{error.message}</p>
+				<p class="error">{error.message}</p>
 			{/await}
 		</div>
 
 		<div class="section">
-			<button on:click={() => {
-				const solutionSVGElement = solutionLayer.getSVGElement()
-				const userSVGElement = userLayer.getSVGElement()
+			{#await similarityPromise}
+				<span></span>
+			{:then similarity}
+				{#if similarity > 90 }
+					<button on:click={() => {
+						dispatch('nextLevel', {})
+					}}>Next Level</button>
+				{/if}
+			{:catch error}
+				<p class="error">{error.message}</p>
+			{/await}
 
-				similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
-			}}>Check</button>
 		</div>
 	</nav>
 </main>
-
