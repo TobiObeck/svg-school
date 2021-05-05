@@ -2,6 +2,8 @@
 import LevelButton from "./LevelButton.svelte"
 export let amountOfLevels = 10
 export let levelsPassed = 0
+export let currentLevel = 0
+
 </script>
     
 <style>

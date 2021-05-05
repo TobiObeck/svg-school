@@ -25,7 +25,7 @@ const update = () =>
     
     const minParentDimension = min(innerWidth, innerHeight)
 
-    console.log(boundingRect, innerWidth, innerHeight)
+    // console.log(boundingRect, innerWidth, innerHeight)
 
     squareElement.style.width = `${minParentDimension}px`
     squareElement.style.height = `${minParentDimension}px`

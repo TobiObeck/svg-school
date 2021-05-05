@@ -12,6 +12,7 @@
 	import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup'
 	import { faClone } from '@fortawesome/free-solid-svg-icons/faClone'
 	import debounce from 'lodash/debounce'
+	
 	const { round } = Math
 
 	const DISPLAY = {
@@ -21,8 +22,8 @@
 
 	const SEMI_TRANSPARENT = 0.5
 	const DEBOUNCE_TIME = 750
-
 	let levelsPassed = 0
+	let currentLevel = 0
 	let userSVG = ""
 	let displayMode = DISPLAY.STACKED
 
@@ -33,11 +34,12 @@
 	
 	const onCodeSectionChangeDebounce = debounce((event) => 
 	{
+		console.log("debounce")
 		const solutionSVGElement = solutionLayer.getSVGElement()
 		const userSVGElement = userLayer.getSVGElement()
 
 		userSVG = event.detail.value
-		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+		await similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
 	}, DEBOUNCE_TIME)
 
 </script>
@@ -148,7 +150,7 @@
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg should look like -->
-							<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG} opacity={SEMI_TRANSPARENT}/>
+							<SVGLayer bind:this={solutionLayer} svg={LEVELS[currentLevel].solutionSVG} opacity={SEMI_TRANSPARENT}/>
 						</div>
 					
 						<div class="layer">
@@ -186,7 +188,7 @@
 
 							<div class="layer">
 								<!-- Layer which shows how the svg should look like -->
-								<SVGLayer bind:this={solutionLayer} svg={LEVELS[levelsPassed].solutionSVG}/>
+								<SVGLayer bind:this={solutionLayer} svg={LEVELS[currentLevel].solutionSVG}/>
 							</div>
 						</div>
 					</MaximumSizeSquare>
@@ -201,12 +203,12 @@
 	</content>
 	<nav>
 		<div class="section">
-			<h2>{LEVELS[levelsPassed].heading}</h2>
-			{@html LEVELS[levelsPassed].tutorialText}
+			<h2>{LEVELS[currentLevel].heading}</h2>
+			{@html LEVELS[currentLevel].tutorialText}
 		</div>
 
 		<div class="section">
-			<LevelProgressBar levelsPassed={levelsPassed} amountOfLevels={LEVELS.length} />
+			<LevelProgressBar levelsPassed={levelsPassed} currentLevel={currentLevel} amountOfLevels={LEVELS.length} />
 		</div>
 
 		<div class="section">
@@ -224,9 +226,13 @@
 				<span></span>
 			{:then similarity}
 				{#if similarity > 90 }
-					<button on:click={() => {
-						dispatch('nextLevel', {})
-					}}>Next Level</button>
+					<p>Level complete!</p>
+					{#if currentLevel == levelsPassed }
+						<button on:click={() => {
+							currentLevel++;
+							levelsPassed = currentLevel;
+						}}>Next Level</button>
+					{/if}
 				{/if}
 			{:catch error}
 				<p class="error">{error.message}</p>
