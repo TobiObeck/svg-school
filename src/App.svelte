@@ -20,6 +20,8 @@
 		STACKED: 1
 	}
 
+	const nextTick = (func) => setTimeout(func, 0)
+
 	const SEMI_TRANSPARENT = 0.5
 	const DEBOUNCE_TIME = 750
 	let levelsPassed = 0
@@ -34,13 +36,20 @@
 	
 	const onCodeSectionChangeDebounce = debounce((event) => 
 	{
-		const solutionSVGElement = solutionLayer.getSVGElement()
-		const userSVGElement = userLayer.getSVGElement()
-
 		userSVG = event.detail.value
-		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
-		//similarityPromise = new Promise((resolve) => setTimeout(()=>{ resolve(0.777) }, 3000))
-		console.log('this is promise', similarityPromise)
+
+		// rendering ...
+
+		nextTick(() => 
+		{
+			const solutionSVGElement = solutionLayer.getSVGElement()
+			const userSVGElement = userLayer.getSVGElement()
+
+			similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+			//similarityPromise = new Promise((resolve) => setTimeout(()=>{ resolve(0.777) }, 3000))
+			console.log('this is promise', similarityPromise)
+		})
+		
 	}, DEBOUNCE_TIME)
 
 </script>
@@ -199,7 +208,7 @@
 		</div>
 
 		<div id="code-section" class="section">
-			<CodeSection on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
+			<CodeSection value="{userSVG}" on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
 		</div>		
 	</content>
 	<nav>
