@@ -18,6 +18,7 @@
 
 	const nextTick = (func) => setTimeout(func, 0)
 
+	const RESOLUTION = 100
 	const SEMI_TRANSPARENT = 0.5
 	const DEBOUNCE_TIME = 750
 	const DISPLAY = {
@@ -41,7 +42,7 @@
 		const solutionSVGElement = solutionLayer.getSVGElement()
 		const userSVGElement = userLayer.getSVGElement()
 
-		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement, RESOLUTION)
 	})
 	
 	const onCodeSectionChangeDebounce = debounce((event) => 
@@ -54,7 +55,7 @@
 			const solutionSVGElement = solutionLayer.getSVGElement()
 			const userSVGElement = userLayer.getSVGElement()
 
-			similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+			similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement, RESOLUTION)
 		})
 		
 	}, DEBOUNCE_TIME)
@@ -167,12 +168,12 @@
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg should look like -->
-							<SVGLayer bind:this={solutionLayer} svg={LEVELS[currentLevel].solutionSVG} opacity={SEMI_TRANSPARENT}/>
+							<SVGLayer bind:this={solutionLayer} svg={LEVELS[currentLevel].solutionSVG} resolution={RESOLUTION} opacity={SEMI_TRANSPARENT}/>
 						</div>
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg of the user looks like -->
-							<SVGLayer bind:this={userLayer} svg={userSVGs[currentLevel]} />
+							<SVGLayer bind:this={userLayer} svg={userSVGs[currentLevel]} resolution={RESOLUTION} />
 						</div>
 					</div>
 				</MaximumSizeSquare>

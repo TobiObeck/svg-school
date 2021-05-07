@@ -3,8 +3,7 @@
 
 export let svg = ''
 export let opacity = 1.0
-
-const RESOLUTION = 100
+export let resolution = 100
 
 let svgElement
 
@@ -36,7 +35,11 @@ svg
 
 
 <div style="opacity: {opacity}">
-    <svg bind:this={svgElement} width="{RESOLUTION}" height="{RESOLUTION}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {VIEWBOX_SIZE} {VIEWBOX_SIZE}" >
+    <svg 
+        bind:this={svgElement} 
+        width="{resolution}" height="{resolution}" 
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {VIEWBOX_SIZE} {VIEWBOX_SIZE}"
+    >
         {@html svg}
     </svg>
 </div>
