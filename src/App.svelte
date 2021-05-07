@@ -26,7 +26,7 @@
 	const DEBOUNCE_TIME = 750
 	let levelsPassed = 0
 	let currentLevel = 0
-	let userSVG = ""
+	let userSVG = `<rect x="0" y="0" width="50" height="50"/>`
 	let displayMode = DISPLAY.STACKED
 
 	let solutionLayer 
@@ -208,7 +208,7 @@
 		</div>
 
 		<div id="code-section" class="section">
-			<CodeSection value="{userSVG}" on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
+			<CodeSection value={userSVG} on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
 		</div>		
 	</content>
 	<nav>
