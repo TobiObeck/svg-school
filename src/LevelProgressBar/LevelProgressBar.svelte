@@ -11,6 +11,7 @@ export let currentLevel = 0
 </style>
 <p>
 You passed {levelsPassed} of {amountOfLevels} Levels!!!
+You are in Level {{currentLevel}}
 </p>
 <section style="">
     <p>Level select:</p>

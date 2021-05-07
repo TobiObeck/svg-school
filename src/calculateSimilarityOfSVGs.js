@@ -56,25 +56,27 @@ async function toImage(svg) {
         const PIXEL_BYTE_LENGTH = 4 // bytes per pixel
         
         let img = document.createElement('img');
-        img.onload = (event) => {
+        img.addEventListener( 'load', (event) => 
+        {
             console.log("onload event", event)
+
+            console.log("svg", svg)
 
             document.body.appendChild(img);
             let canvas = document.createElement("canvas");
-            //let ratio = (img.clientWidth / img.clientHeight) || 1;
+            let ratio = (img.clientWidth / img.clientHeight) || 1;
             document.body.removeChild(img);
             canvas.width = RESOLUTION_WIDTH;
-            canvas.height = RESOLUTION_WIDTH;
+            canvas.height = RESOLUTION_WIDTH / ratio;
             let ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             console.log('img', img)
-            c
-nsole        
             // mindestens hier hat firefox keinen Bock mehr
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data            
             console.log('raw imageData', imageData)
+
             const imageByteChunks = chunk(imageData, PIXEL_BYTE_LENGTH)
-            const processedImageByteChunks = imageByteChunks.map(chunk => 
+            const processedImageByteChunks = imageByteChunks.map((chunk) => 
             {
                 if(chunk[ALPHA_CHANNEL_INDEX] === 0)
                 {
@@ -87,8 +89,9 @@ nsole
             })
         
             resolve(processedImageByteChunks)
-        };
-        img.src = svg;
+        })
+
+        img.src = svg
     })    
 }
 

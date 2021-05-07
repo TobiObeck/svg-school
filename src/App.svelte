@@ -8,6 +8,7 @@
 	import { calculateSimilarityOfSVGs } from "./calculateSimilarityOfSVGs"
 	import LEVELS from "./LEVELS"
 
+	import { onMount } from 'svelte'
 	import Icon from 'fa-svelte'
 	import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup'
 	import { faClone } from '@fortawesome/free-solid-svg-icons/faClone'
@@ -15,39 +16,45 @@
 	
 	const { round } = Math
 
+	const nextTick = (func) => setTimeout(func, 0)
+
+	const SEMI_TRANSPARENT = 0.5
+	const DEBOUNCE_TIME = 750
 	const DISPLAY = {
 		PARALLEL: 0,
 		STACKED: 1
 	}
 
-	const nextTick = (func) => setTimeout(func, 0)
-
-	const SEMI_TRANSPARENT = 0.5
-	const DEBOUNCE_TIME = 750
+	
 	let levelsPassed = 0
 	let currentLevel = 0
-	let userSVG = `<rect x="0" y="0" width="50" height="50"/>`
+	let userSVGs = LEVELS.map(() => '')
 	let displayMode = DISPLAY.STACKED
 
 	let solutionLayer 
 	let userLayer 
 
 	let similarityPromise = new Promise((resolve) => resolve(0))
+
+	onMount(() => 
+	{
+		const solutionSVGElement = solutionLayer.getSVGElement()
+		const userSVGElement = userLayer.getSVGElement()
+
+		similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
+	})
 	
 	const onCodeSectionChangeDebounce = debounce((event) => 
 	{
-		userSVG = event.detail.value
+		userSVGs[currentLevel] = event.detail.value
 
-		// rendering ...
-
+		// to render based on userSVGs
 		nextTick(() => 
 		{
 			const solutionSVGElement = solutionLayer.getSVGElement()
 			const userSVGElement = userLayer.getSVGElement()
 
 			similarityPromise = calculateSimilarityOfSVGs(solutionSVGElement, userSVGElement)
-			//similarityPromise = new Promise((resolve) => setTimeout(()=>{ resolve(0.777) }, 3000))
-			console.log('this is promise', similarityPromise)
 		})
 		
 	}, DEBOUNCE_TIME)
@@ -165,7 +172,7 @@
 					
 						<div class="layer">
 							<!-- Layer which shows how the svg of the user looks like -->
-							<SVGLayer bind:this={userLayer} svg={userSVG} />
+							<SVGLayer bind:this={userLayer} svg={userSVGs[currentLevel]} />
 						</div>
 					</div>
 				</MaximumSizeSquare>
@@ -182,7 +189,7 @@
 
 							<div class="layer">
 								<!-- Layer which shows how the svg of the user looks like -->
-								<SVGLayer bind:this={userLayer} svg={userSVG} />
+								<SVGLayer bind:this={userLayer} svg={userSVGs[currentLevel]} />
 							</div>
 						</div>
 					</MaximumSizeSquare>
@@ -208,7 +215,7 @@
 		</div>
 
 		<div id="code-section" class="section">
-			<CodeSection value={userSVG} on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
+			<CodeSection value={userSVGs[currentLevel]} on:change={(event) => { onCodeSectionChangeDebounce(event) }}></CodeSection>
 		</div>		
 	</content>
 	<nav>

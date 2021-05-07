@@ -4,6 +4,8 @@
 export let svg = ''
 export let opacity = 1.0
 
+const RESOLUTION = 100
+
 let svgElement
 
 export const getSVGElement = () => 
@@ -34,7 +36,7 @@ svg
 
 
 <div style="opacity: {opacity}">
-    <svg bind:this={svgElement} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {VIEWBOX_SIZE} {VIEWBOX_SIZE}" >
+    <svg bind:this={svgElement} width="{RESOLUTION}" height="{RESOLUTION}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {VIEWBOX_SIZE} {VIEWBOX_SIZE}" >
         {@html svg}
     </svg>
 </div>
