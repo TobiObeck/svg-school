@@ -25,6 +25,16 @@ export default [
   {
     heading: "Introduction",
     tutorialText: "lorem...",
+    solutionSVG: level1, // '<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />'
+  },
+  {
+    heading: "Introduction 2",
+    tutorialText: "lorem...",
+    solutionSVG: level2, // '<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />'
+  },
+  {
+    heading: "Introduction 3",
+    tutorialText: "lorem...",
     solutionSVG: level3, // '<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />'
   },
 ];

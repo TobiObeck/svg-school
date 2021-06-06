@@ -26,10 +26,11 @@ a little website that teaches you how to use SVG
 
 ## 🗒 Roadmap / TODO
 
-- color to grayscale / evaluate color space
-- lodash debounce check
-- more levels
-- info texts
-- coordinate system numbers
-- bonus points for minimal code size
-- accuracy bug (always 100% accuracy)?
+- [ ] selection of levels
+- [ ] more levels
+- [ ] info texts
+- [ ] coordinate system numbers
+- [ ] color to grayscale / evaluate color space for better similarity measurement
+- [ ] bonus points for minimal code size
+- [x] ~~accuracy bug (always 100% accuracy)?~~
+- [x] ~~lodash debounce check~~

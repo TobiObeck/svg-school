@@ -20,8 +20,10 @@ export async function calculateSimilarityOfSVGs(svgElement1, svgElement2, resolu
     
     const image1ByteChunks = await toImage(encodedSVGString1, resolution)
     const image2ByteChunks = await toImage(encodedSVGString2, resolution)
+
     console.log("Image bytes:" + image1ByteChunks)
     console.log("Image bytes:" + image2ByteChunks)
+    
     const sumOfDists = imageDist(image1ByteChunks, image2ByteChunks)
     const maxDistance = (image1ByteChunks.length) * sqrt(NUMBER_OF_CHANNELS)
 

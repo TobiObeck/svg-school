@@ -18,6 +18,7 @@
 
 	const nextTick = (func) => setTimeout(func, 0)
 
+	const SIMILARITY_TO_PASS_LEVEL = 0.99
 	const RESOLUTION = 100
 	const SEMI_TRANSPARENT = 0.5
 	const DEBOUNCE_TIME = 750
@@ -236,7 +237,7 @@
 				<p>The Similarity is {round(similarity * 100)}%</p>
 			</div>
 			<div class="section">
-				{#if similarity > 0.9 }
+				{#if similarity > SIMILARITY_TO_PASS_LEVEL }
 					<p>Level complete!</p>
 					{#if currentLevel == levelsPassed }
 						<button on:click={() => {
