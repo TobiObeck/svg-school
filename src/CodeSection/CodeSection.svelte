@@ -9,10 +9,9 @@
   export let value = ''
 
 	const options = {
-		mode: "xml",
+    mode: 'xml',
     htmlMode: true,
-		lineNumbers: true,
-    value: value
+		lineNumbers: true
 	}
 
 	let editor
@@ -47,7 +46,5 @@
 </style>
 
 <div>
-  <CodeMirror bind:editor {options} class="editor"/>
+  <CodeMirror bind:editor {value} {options} class="editor"/>
 </div>
-
-

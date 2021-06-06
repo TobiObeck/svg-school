@@ -1,4 +1,7 @@
 <script>
+
+import range from 'lodash/range'
+
 import LevelButton from "./LevelButton.svelte"
 export let amountOfLevels = 10
 export let levelsPassed = 0
@@ -11,13 +14,15 @@ export let currentLevel = 0
 </style>
 <p>
 You passed {levelsPassed} of {amountOfLevels} Levels!!!
-You are in Level {{currentLevel}}
+You are in Level {currentLevel + 1}
 </p>
+
 <section style="">
     <p>Level select:</p>
     <LevelButton></LevelButton>
-    <input type="radio" id="level_2" name="levels" value="2">
-    <label for="level_2">2</label><br>
-    <input type="radio" id="level_3" name="levels" value="3">
-    <label for="level_3">3</label>
+
+    {#each range(0, amountOfLevels) as levelIndex}
+        <input type="radio" id="level_{levelIndex}" name="level" value="{levelIndex}">
+        <label for="level_{levelIndex}">{levelIndex + 1}</label><br>    
+    {/each}
 </section>

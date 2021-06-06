@@ -6,7 +6,7 @@
 	import CodeSection from "./CodeSection/CodeSection.svelte"
 	import MaximumSizeSquare from './MaximumSizeSquare/MaximumSizeSquare.svelte'
 	import { calculateSimilarityOfSVGs } from "./calculateSimilarityOfSVGs"
-	import LEVELS from "./LEVELS"
+	import { LEVELS } from "./LEVELS.ts"
 
 	import { onMount } from 'svelte'
 	import Icon from 'fa-svelte'
@@ -22,11 +22,11 @@
 	const RESOLUTION = 100
 	const SEMI_TRANSPARENT = 0.5
 	const DEBOUNCE_TIME = 750
+	
 	const DISPLAY = {
 		PARALLEL: 0,
 		STACKED: 1
 	}
-
 	
 	let levelsPassed = 0
 	let currentLevel = 0
@@ -222,8 +222,8 @@
 	</content>
 	<nav>
 		<div class="section">
-			<h2>{LEVELS[currentLevel].heading}</h2>
-			{@html LEVELS[currentLevel].tutorialText}
+			<h2>{LEVELS[currentLevel].title}</h2>
+			{@html LEVELS[currentLevel].description}
 		</div>
 
 		<div class="section">
@@ -243,6 +243,8 @@
 						<button on:click={() => {
 							currentLevel++;
 							levelsPassed = currentLevel;
+							similarityPromise = new Promise((resolve) => resolve(0))
+
 						}}>Next Level</button>
 					{/if}
 				{/if}

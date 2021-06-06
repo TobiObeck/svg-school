@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser'
 import {sass} from 'svelte-preprocess-sass'
 import postcss from "rollup-plugin-postcss"
 import json from 'rollup-plugin-json'
+import typescript from 'rollup-plugin-typescript'
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -50,6 +51,8 @@ export default {
 			  }]
 			]
 		}),
+
+		typescript(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
