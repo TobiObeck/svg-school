@@ -61,6 +61,11 @@
 		
 	}, DEBOUNCE_TIME)
 
+	const onLevelChange = (levelIndex) => 
+	{
+		currentLevel = levelIndex
+	}
+
 </script>
 
 <style>
@@ -227,7 +232,12 @@
 		</div>
 
 		<div class="section">
-			<LevelProgressBar levelsPassed={levelsPassed} currentLevel={currentLevel} amountOfLevels={LEVELS.length} />
+			<LevelProgressBar 
+				on:levelChange={(e) => { onLevelChange(e.detail.levelIndex)}} 
+				levelsPassed={levelsPassed} 
+				currentLevel={currentLevel} 
+				amountOfLevels={LEVELS.length} 
+			/>
 		</div>
 
 		{#await similarityPromise}

@@ -49,8 +49,23 @@ export const LEVELS: Array<Level> = [
         description: ''
     },
     {
+        title: 'Mondrian (abstract art)',
+        solutionSVG: `<rect x="0" y="0" width="60" height="60" style="fill:rgb(255,0,0);stroke:black;stroke-width:1.71px;"/>
+        <rect x="60" y="0" width="40" height="30" style="fill:rgb(255,237,0);stroke:black;stroke-width:2.92px;"/>
+        <rect x="60" y="30" width="20" height="30" style="fill:white;stroke:black;stroke-width:4.16px;"/>
+        <rect x="80" y="30" width="20" height="30" style="fill:white;stroke:black;stroke-width:4.16px;"/>
+        <rect x="60" y="60" width="40" height="15" style="fill:white;stroke:black;stroke-width:3.48px;"/>
+        <rect x="30" y="60" width="30" height="15" style="fill:white;stroke:black;stroke-width:2.5px;"/>
+        <rect x="30" y="75" width="30" height="15" style="fill:white;stroke:black;stroke-width:2.5px;"/>
+        <rect x="0" y="90" width="30" height="20" style="fill:white;stroke:black;stroke-width:5.12px;"/>
+        <rect x="30" y="90" width="30" height="10" style="fill:rgb(19,19,19);stroke:black;stroke-width:3.25px;"/>
+        <rect x="0" y="60" width="30" height="30" style="fill:rgb(19,19,19);stroke:black;stroke-width:5.12px;"/>
+        <rect x="60" y="75" width="40" height="25" style="fill:rgb(32,59,113);stroke:black;stroke-width:3.22px;"/>`,
+        description: ''
+    },
+    {
         title: 'default exports sind illegel, Punkt!',
-        solutionSVG: ``,
+        solutionSVG:'',
         description: ''
     }
 ]
