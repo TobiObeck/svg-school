@@ -1,9 +1,8 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
-	import CodeMirror from '@joshnuss/svelte-codemirror'
+	import SvelteCodemirror from './SvelteCodemirror/SvelteCodemirror.svelte'
   import 'codemirror/mode/xml/xml.js'
 
-  const UPDATE_INTERVAL_IN_MS = 100 
   const dispatch = createEventDispatcher();
 
   export let value = ''
@@ -14,20 +13,10 @@
 		lineNumbers: true
 	}
 
-	let editor
-
-  onMount(() => 
-  { 
-    setInterval(() => 
-    { 
-      const nextValue = editor.getValue()
-      if(value !== nextValue)
-      {
-        value = nextValue
-        dispatch('change', { value: value })
-      }
-    }, UPDATE_INTERVAL_IN_MS)
-  }) 
+  $:
+  {
+    dispatch('change', { value: value })
+  }
 
 </script>
 
@@ -46,5 +35,5 @@
 </style>
 
 <div>
-  <CodeMirror bind:editor {value} {options} class="editor"/>
+  <SvelteCodemirror bind:value={value} options={options} class="editor"/>
 </div>

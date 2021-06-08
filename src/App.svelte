@@ -1,6 +1,7 @@
 <script>
 
 	import LevelProgressBar from "./LevelProgressBar/LevelProgressBar.svelte"
+	import TransparentLayer from './TransparentLayer/TransparentLayer.svelte'
 	import SVGLayer from "./SVGLayer/SVGLayer.svelte"
 	import SVGGrid from "./SVGGrid/SVGGrid.svelte"
 	import CodeSection from "./CodeSection/CodeSection.svelte"
@@ -167,6 +168,11 @@
 			{#if displayMode === DISPLAY.STACKED}
 				<MaximumSizeSquare>
 					<div class="stacking">
+						<!-- Layer which shows the transparent background -->
+						<div class="layer">
+							<TransparentLayer/>
+						</div>
+
 						<!-- Layer which shows a grid -->
 						<div class="layer">
 							<SVGGrid />
@@ -189,6 +195,11 @@
 				<div class="fullsize">
 					<MaximumSizeSquare>
 						<div class="stacking">
+							<!-- Layer which shows the transparent background -->
+							<div class="layer">
+								<TransparentLayer/>
+							</div>
+							
 							<!-- Layer which shows a grid -->
 							<div class="layer">
 								<SVGGrid/>
@@ -205,6 +216,11 @@
 				<div class="fullsize">
 					<MaximumSizeSquare>
 						<div class="stacking">
+							<!-- Layer which shows the transparent background -->
+							<div class="layer">
+								<TransparentLayer/>
+							</div>
+
 							<!-- Layer which shows a grid -->
 							<div class="layer">
 								<SVGGrid />
