@@ -1,13 +1,13 @@
 <script>
 
-	import LevelProgressBar from "./LevelProgressBar/LevelProgressBar.svelte"
-	import TransparentLayer from './TransparentLayer/TransparentLayer.svelte'
-	import SVGLayer from "./SVGLayer/SVGLayer.svelte"
-	import SVGGrid from "./SVGGrid/SVGGrid.svelte"
-	import CodeSection from "./CodeSection/CodeSection.svelte"
-	import MaximumSizeSquare from './MaximumSizeSquare/MaximumSizeSquare.svelte'
-	import { calculateSimilarityOfSVGs } from "./calculateSimilarityOfSVGs"
-	import { LEVELS } from "./LEVELS.ts"
+	import LevelProgressBar from "./lib/components/MaximumSizeSquare/LevelProgressBar/LevelProgressBar.svelte"
+	import TransparentLayer from './lib/components/TransparentLayer/TransparentLayer.svelte'
+	import SVGLayer from "./lib/components/SVGLayer/SVGLayer.svelte"
+	import SVGGrid from "./lib/components/SVGGrid/SVGGrid.svelte"
+	import CodeSection from "./lib/components/CodeSection/CodeSection.svelte"
+	import MaximumSizeSquare from './lib/components/MaximumSizeSquare/MaximumSizeSquare.svelte'
+	import { calculateSimilarityOfSVGs } from "./lib/logic/calculateSimilarityOfSVGs"
+	import { LEVELS } from "./lib/const/LEVELS"
 
 	import { onMount } from 'svelte'
 	import Icon from 'fa-svelte'
