@@ -1,20 +1,20 @@
 <script>
 
-	import LevelProgressBar from "./lib/components/MaximumSizeSquare/LevelProgressBar/LevelProgressBar.svelte"
-	import TransparentLayer from './lib/components/TransparentLayer/TransparentLayer.svelte'
-	import SVGLayer from "./lib/components/SVGLayer/SVGLayer.svelte"
-	import SVGGrid from "./lib/components/SVGGrid/SVGGrid.svelte"
-	import CodeSection from "./lib/components/CodeSection/CodeSection.svelte"
-	import MaximumSizeSquare from './lib/components/MaximumSizeSquare/MaximumSizeSquare.svelte'
-	import { calculateSimilarityOfSVGs } from "./lib/logic/calculateSimilarityOfSVGs"
-	import { LEVELS } from "./lib/const/LEVELS"
+	import LevelProgressBar from "$lib/components/MaximumSizeSquare/LevelProgressBar/LevelProgressBar.svelte"
+	import TransparentLayer from '$lib/components/TransparentLayer/TransparentLayer.svelte'
+	import SVGLayer from "$lib/components/SVGLayer/SVGLayer.svelte"
+	import SVGGrid from "$lib/components/SVGGrid/SVGGrid.svelte"
+	import CodeSection from "$lib/components/CodeSection/CodeSection.svelte"
+	import MaximumSizeSquare from '$lib/components/MaximumSizeSquare/MaximumSizeSquare.svelte'
+	import { calculateSimilarityOfSVGs } from "$lib/logic/calculateSimilarityOfSVGs"
+	import { LEVELS } from "$lib/const/LEVELS"
 
 	import { onMount } from 'svelte'
-	import Icon from 'fa-svelte'
+	// import Icon from 'fa-svelte'
 	import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup'
 	import { faClone } from '@fortawesome/free-solid-svg-icons/faClone'
 	import debounce from 'lodash/debounce'
-	
+
 	const { round } = Math
 
 	const nextTick = (func) => setTimeout(func, 0)
@@ -157,10 +157,10 @@
 		<div class="justify-right">
 
 			<button on:click={() => { displayMode = DISPLAY.STACKED}}>
-				<Icon icon={faLayerGroup}></Icon>
+				TODO ICON faLayerGroup<!-- <Icon icon={faLayerGroup}></Icon> -->
 			</button>
 			<button on:click={() => { displayMode = DISPLAY.PARALLEL}}>
-				<Icon icon={faClone}></Icon>
+				TODO ICON faClone <!-- <Icon icon={faClone}></Icon> -->
 			</button>
 		</div>
 
